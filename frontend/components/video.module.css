@@ -1,0 +1,42 @@
+.page{
+    overflow: hidden;
+    height: 105vh;
+    position: relative;
+}
+.vid{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.text{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: transparent;
+    margin: auto;
+    text-transform: uppercase;
+    gap: 2rem;
+}
+.text h2{
+    font-size: 2.6rem;
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-align:center;
+    margin: 0 auto;
+}
+.text p{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
+    letter-spacing: 3px;
+    line-height: 1.5;
+}
+.img{
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+}

@@ -1,0 +1,47 @@
+query GetListings {
+  getListings {
+    id
+    street_address
+    city
+    state
+    zip
+    country
+    zillow_link
+    has_sold
+    beds
+    bathrooms
+    square_footage
+    year
+    school_district
+    primary_school
+    secondary_school
+    tertiary_school
+    monthly_cost_30yr
+    monthly_cost_15yr
+    monthly_cost_10yr
+    monthly_cost_5yr
+    tags
+    creatorId
+    creator {
+      id
+      first_name
+      last_name
+      username
+      email
+      realtor_url
+      zillow_url
+      redfin_url
+      facebook_url
+      youtube_url
+      twitter_url
+      instagram_url
+      createdAt
+      updatedAt
+    }
+    imageUrls
+    imageUrlsMedium
+    imageUrlsSmall
+    createdAt
+    updatedAt
+  }
+}

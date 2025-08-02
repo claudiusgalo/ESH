@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+  
+  }
+  *,::after,::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .page{
+    overflow: hidden;
+    height: 100vh;
+  }
+  .leaflet-container {
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+  }
+  .marker{
+    font-size: 4rem;
+  }

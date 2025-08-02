@@ -1,0 +1,11 @@
+.featured_container {
+    @apply p-[2rem] bg-[#f6f1ed];
+}
+
+.featured_title {
+    @apply text-center uppercase tracking-[3px] text-[#183f26];
+}
+
+.product_container {
+    @apply grid justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2rem];
+}
