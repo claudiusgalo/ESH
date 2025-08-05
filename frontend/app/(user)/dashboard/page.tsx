@@ -13,13 +13,13 @@ const AdminDashboard: React.FC = () => {
   useIsAuth();
   const [, GetListings] = useGetListingsQuery();
 
-  const { data, error } = await GetListings({});
+  // const { data, error } = await GetListings({});
 
-  useEffect(() => {
-    // Log data and error after the data has been fetched
-    console.log(data);
-    console.error(error);
-  }, [data, error]);
+  // useEffect(() => {
+  //   // Log data and error after the data has been fetched
+  //   console.log(data);
+  //   console.error(error);
+  // }, [data, error]);
 
   // Sample data for the list
   const items = [
