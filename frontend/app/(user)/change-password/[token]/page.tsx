@@ -89,64 +89,57 @@
 // }
 
 'use client';
-import {
-	useChangePasswordMutation,
-	useRegisterMutation,
-} from '@/graphql/gql/graphql';
+
+import { useChangePasswordMutation } from '@/graphql/gql/graphql';
 import Wrapper from '@/components/admin/components/Wrapper';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { NextPage } from 'next';
-import { createUrqlClient } from '@/utils/createUrqlClient';
-import { withUrqlClient } from 'next-urql';
 import { useRouter } from 'next/navigation';
 
 const validationSchema = Yup.object({
 	newPassword: Yup.string().required('Password is required'),
 });
 
-const initialValues = {
-	token: '',
-	newPassword: '',
-};
-
-function Page({ params }: { params: { token: string } }) {
+export default function ChangePasswordPage({ params }: { params: { token: string } }) {
 	const router = useRouter();
-	const [, ChangePassword] = useChangePasswordMutation();
+	const [, changePassword] = useChangePasswordMutation();
+
 	const handleSubmit = async (
-		values: typeof initialValues,
+		values: { newPassword: string },
 		{ setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
 	) => {
 		try {
-			const response = await ChangePassword({
+			const response = await changePassword({
 				newPassword: values.newPassword,
 				token: params.token,
 			});
 			if (response.data?.changePassword.errors) {
-				console.log(response.data.changePassword.errors);
+				console.error(response.data.changePassword.errors);
 			} else if (response.data?.changePassword.user) {
 				router.push('/');
 			}
 		} catch (error) {
 			console.error(error);
+		} finally {
+			setSubmitting(false);
 		}
-		setSubmitting(false);
 	};
+
 	return (
-		<Wrapper>
-			<div> this is the token: {params.token}</div>
+		<Wrapper pageProps={undefined}>
 			<div className='flex justify-center items-center min-h-screen bg-blue-55'>
 				<div className='bg-grey-56 rounded-md shadow-lg p-6 border-2 border-orange-55'>
 					<h1>Reset Password</h1>
+					<p>Token: {params.token}</p>
 					<Formik
-						initialValues={initialValues}
+						initialValues={{ newPassword: '' }}
 						validationSchema={validationSchema}
 						onSubmit={handleSubmit}>
 						<Form>
 							<div>
 								<label htmlFor='newPassword'>Password</label>
 								<Field
-									type='text'
+									type='password'
 									id='newPassword'
 									name='newPassword'
 								/>
@@ -158,7 +151,7 @@ function Page({ params }: { params: { token: string } }) {
 
 							<button
 								type='submit'
-								className='bg-orange-55'>
+								className='bg-orange-55 mt-4 px-4 py-2 rounded'>
 								Submit
 							</button>
 						</Form>
@@ -168,5 +161,3 @@ function Page({ params }: { params: { token: string } }) {
 		</Wrapper>
 	);
 }
-
-export default withUrqlClient(createUrqlClient)(Page);

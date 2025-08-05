@@ -1,27 +1,15 @@
 import NextLink from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 
-export function IndividualListingSmallTest({ p }) {
+export function IndividualListingSmallTest() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isShown, setIsShown] = useState(false);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
-  const modalWidth = 200; // Set the fixed width of the modal in pixels
-  const modalHeight = 200; // Set the fixed height of the modal in pixels
   const modalTimeoutRef = useRef<NodeJS.Timeout | undefined>();
   const [isCursorInContainer, setIsCursorInContainer] = useState(false);
   const [isCursorInModal, setIsCursorInModal] = useState(false);
 
-  const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : p.imageUrls.length - 1
-    );
-  };
 
-  const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex < p.imageUrls.length - 1 ? prevIndex + 1 : 0
-    );
-  };
 
   const [isHovering, setIsHovering] = useState(false);
   // ... (existing code)
@@ -40,11 +28,10 @@ export function IndividualListingSmallTest({ p }) {
     };
   }, []);
 
-  const isMobileDevice = window.innerWidth <= 767; // 767px is a common breakpoint for mobile devices
 
   return (
     <div
-      key={p}
+      //key={p}
       className=" min-h-fit min-w-max max-w-[120px] aspect-[2/3] items-center place-content-center container flex-col justify-items-center p-1 bg-red-500 overflow-clip"
     >
       <div
