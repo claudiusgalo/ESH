@@ -22,7 +22,7 @@
     font-family: Georgia, 'Times New Roman', Times, serif;}
 .list li a{
     text-decoration: none;
-    color: white;
+    color: #306f44;
     font-weight: 300;
     display: block;
     padding: 7px;
@@ -44,7 +44,7 @@
     left: 30px;
 }
 .icons svg{
-    color: white;
+    color: #306f44;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
 }
