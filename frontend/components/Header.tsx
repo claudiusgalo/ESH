@@ -56,7 +56,7 @@ export default function Header() {
 						</Link>
 					</div>
 
-					<div className='block lg:hidden'>
+					<div className='bg-green-800 block lg:hidden'>
 						<Menu>
 							<MenuButton
 								as={Button}
