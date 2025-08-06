@@ -22,7 +22,12 @@ const Video = ({
 				src={video}
 				autoPlay
 				muted
-				loop></video>
+				loop
+				playsInline
+				disablePictureInPicture
+				controls={false}
+				>
+				</video>
 			<div className={styles.text}>
 				<h2>
 					{title_l1} <br /> {title_l2} <br />
