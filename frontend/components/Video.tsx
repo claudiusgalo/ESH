@@ -39,7 +39,7 @@ const Video = ({
 					/>
 				)}
 			</div>
-			{!isLoading && (
+			{/* {!isLoading && (
 				<Image
 					alt='dog'
 					className={styles.img}
@@ -47,7 +47,7 @@ const Video = ({
 					width={150}
 					height={150}
 				/>
-			)}
+			)} */}
 		</div>
 	);
 };
