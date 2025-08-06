@@ -16,7 +16,7 @@ const BurgerMenu = () => {
 				<Link
 					key={key}
 					href={value}
-					className='p-2 duration-300 rounded-lg hover:bg-gray-200 hover:text-black'>
+					className='p-2 duration-300 rounded-lg hover:bg-green-200 hover:text-black'>
 					<MenuItem>{key}</MenuItem>
 				</Link>
 			))}
