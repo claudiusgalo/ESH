@@ -11,7 +11,7 @@ const BurgerMenu = () => {
 		Team: '/team',
 	};
 	return (
-		<MenuList className='flex flex-col bg-green-700 shadow-2xl border-none scale-110 p-2 z-20 rounded-lg min-w-[100px] lg:min-w-[200px]'>
+		<MenuList className='flex flex-col fill-green-900 bg-green-700 shadow-2xl border-none scale-110 p-2 z-20 rounded-lg min-w-[100px] lg:min-w-[200px]'>
 			{Object.entries(burgerLinks).map(([key, value]) => (
 				<Link
 					key={key}
