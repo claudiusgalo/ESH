@@ -60,7 +60,7 @@ export default function Header() {
 						<Menu>
 							<MenuButton
 								as={Button}
-								className='hover:bg-green-900'>
+								className='bg-green-900 hover:bg-green-900'>
 								<FaBars
 									className={styles.bars}
 									onClick={toggleBar}
