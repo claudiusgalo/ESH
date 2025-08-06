@@ -1,24 +1,37 @@
 'use client';
 import styles from './burgermenu.module.css';
-import Link from 'next/link';
-import { Menu, MenuButton, Button, MenuList, MenuItem } from '@chakra-ui/react';
-import { FaEye, FaMapMarkerAlt } from 'react-icons/fa';
-import { Burger } from '@/interfaces/burger';
+import NextLink from 'next/link';
+import { MenuList, MenuItem } from '@chakra-ui/react';
 
 const BurgerMenu = () => {
 	const burgerLinks = {
 		Catalog: '/catalog',
 		Team: '/team',
 	};
+
 	return (
-		<MenuList className='flex flex-col fill-green-900 bg-green-700 shadow-2xl border-none scale-110 p-2 z-20 rounded-lg min-w-[100px] lg:min-w-[200px]'>
-			{Object.entries(burgerLinks).map(([key, value]) => (
-				<Link
-					key={key}
-					href={value}
-					className='p-2 duration-300 fill-green-800 bg-green-800 rounded-lg hover:bg-green-700 hover:text-black'>
-					<MenuItem>{key}</MenuItem>
-				</Link>
+		<MenuList
+			bg='green.700'
+			color='white'
+			shadow='2xl'
+			border='none'
+			p={2}
+			zIndex={20}
+			borderRadius='lg'
+			minW='100px'
+			className='lg:min-w-[200px]'
+		>
+			{Object.entries(burgerLinks).map(([label, href]) => (
+				<MenuItem
+					key={label}
+					as={NextLink}
+					href={href}
+					bg='green.800'
+					borderRadius='lg'
+					_hover={{ bg: 'green.600', color: 'black' }}
+				>
+					{label}
+				</MenuItem>
 			))}
 		</MenuList>
 	);
