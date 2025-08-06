@@ -62,8 +62,9 @@ export default function Header() {
 								as={Button}
 								className='fill-green-800 bg-green-900 hover:bg-green-900'>
 								<FaBars
-									className={styles.bars}
 									onClick={toggleBar}
+									className={`${styles.bars} text-green-800`}
+
 								/>
 							</MenuButton>
 							<BurgerMenu />
