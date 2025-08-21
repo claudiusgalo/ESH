@@ -71,7 +71,7 @@
   /* Synopsis: no clamping; just smaller type & tighter leading on phones */
   .synopsis {
     margin-top: 0.7rem;
-    font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+    font-size: clamp(0.8rem, 1.4vw, 0.95rem);
     line-height: 1.55;        /* a bit tighter for small screens */
     max-width: 65ch;
     overflow-wrap: anywhere;
