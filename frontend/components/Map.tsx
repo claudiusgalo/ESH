@@ -20,6 +20,7 @@ type Item = {
   title: string;
   code?: LatLngTuple; // support either shape
   coordinates?: LatLngTuple; // support either shape
+  status?: 'sale' | 'pending' | 'sold'; // <-- add this
 };
 
 type Props = {
@@ -53,7 +54,7 @@ const FitToMarkers: React.FC<{ points: LatLngTuple[] }> = ({ points }) => {
   return null;
 };
 
-/** --- Zoom-scaled marker helpers --- */
+/** ---- Zoom-scaled marker helpers ---- */
 function sizeForZoom(
   zoom: number,
   baseZoom = 13,
@@ -66,19 +67,46 @@ function sizeForZoom(
   return Math.max(minPx, Math.min(maxPx, px));
 }
 
-function makeScaledIcon(px: number, html = '📍'): L.DivIcon {
+const colorForStatus = (status?: Item['status']) => {
+  switch (status) {
+    case 'pending':
+      return '#f59e0b'; // orange-500
+    case 'sold':
+      return '#dc2626'; // red-600
+    case 'sale':
+    default:
+      return '#16a34a'; // green-600
+  }
+};
+
+/** Small SVG pin that fills its container; tip is at bottom-center */
+const pinSVG = (colorHex: string) => `
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <path
+    d="M12 1.5c-4.14 0-7.5 3.36-7.5 7.5 0 5.06 6.12 12.41 7.16 13.58.21.24.58.24.79 0C13.5 21.41 19.5 14.06 19.5 9c0-4.14-3.36-7.5-7.5-7.5Z"
+    fill="${colorHex}"
+    stroke="rgba(0,0,0,.25)"
+    stroke-width="1"
+  />
+  <circle cx="12" cy="9" r="3.05" fill="#fff" opacity=".95"/>
+</svg>
+`;
+
+function makeScaledIcon(px: number, colorHex: string): L.DivIcon {
   return Leaflet.divIcon({
     iconSize: [px, px],
-    iconAnchor: [px / 2, px], // bottom-center tip stays on the coordinate
-    className: 'zoom-pin',
-    html: `<div class="${styles['zoom-pin__inner']}">📍</div>`,
+    iconAnchor: [px / 2, px], // bottom-center tip on the coordinate
+    className: styles?.zoomPin ?? 'zoom-pin', // still apply CSS module class if present
+    html: `<div class="${styles?.zoomPinInner ?? 'zoom-pin__inner'}">${pinSVG(
+      colorHex
+    )}</div>`,
   });
 }
 
 type ZoomScaledMarkerProps = {
   position: LatLngTuple;
   title?: string;
-  html?: string;
+  status?: Item['status'];
   baseZoom?: number;
   basePx?: number;
   growth?: number;
@@ -89,14 +117,13 @@ type ZoomScaledMarkerProps = {
 const ZoomScaledMarker: React.FC<ZoomScaledMarkerProps> = ({
   position,
   title,
-  html = '📍',
+  status,
   baseZoom = 13,
   basePx = 22,
   growth = 1.12,
   minPx = 14,
   maxPx = 46,
 }) => {
-  // Track current zoom
   const [zoom, setZoom] = React.useState<number | null>(null);
   const map = useMapEvents({
     zoom: (e) => setZoom(e.target.getZoom()),
@@ -114,7 +141,8 @@ const ZoomScaledMarker: React.FC<ZoomScaledMarkerProps> = ({
     minPx,
     maxPx
   );
-  const icon = React.useMemo(() => makeScaledIcon(px, html), [px, html]);
+  const color = colorForStatus(status);
+  const icon = React.useMemo(() => makeScaledIcon(px, color), [px, color]);
 
   return (
     <Marker
@@ -126,7 +154,7 @@ const ZoomScaledMarker: React.FC<ZoomScaledMarkerProps> = ({
   );
 };
 
-/** --- Map component --- */
+/** ---- Map component ---- */
 const Map: React.FC<Props> = ({
   data,
   mapRef,
@@ -136,7 +164,6 @@ const Map: React.FC<Props> = ({
 }) => {
   const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
-  // Prefer MapTiler when key exists; fall back to OSM
   const providerUrl =
     tileUrl ??
     (MAPTILER_KEY
@@ -149,7 +176,6 @@ const Map: React.FC<Props> = ({
       ? '© MapTiler © OpenStreetMap contributors'
       : defaultOSMAttr);
 
-  // Normalize your data: d.coordinates or d.code
   const points = useMemo<LatLngTuple[]>(
     () =>
       (data ?? [])
@@ -194,12 +220,7 @@ const Map: React.FC<Props> = ({
               key={d.id}
               position={pos}
               title={d.title}
-              html="📍"
-              baseZoom={13}
-              basePx={22}
-              growth={1.12}
-              minPx={14}
-              maxPx={46}
+              status={d.status} // <-- drives color
             />
           );
         })}
