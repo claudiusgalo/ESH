@@ -1,3 +1,4 @@
+/* === Your original styles (kept) === */
 .page{
     /* height: 100vh; */
     padding: 3rem 4rem;
@@ -7,12 +8,14 @@
     align-items: center;
     /* gap: 3; */
 }
+
 .form{
     width: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .content h2{
     text-transform: uppercase;
     font-size: 2.3rem;
@@ -21,6 +24,7 @@
     text-align: center;
     color: #183f26;
 }
+
 .content{
     line-height: 1.5;
     display: flex;
@@ -29,15 +33,18 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .content p{
     font-size: 1.5rem;
     color: #545d5a;
 }
+
 .content form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .content form button{
     color: #355741;
     padding: 5px 10px;
@@ -47,6 +54,7 @@
     background: none;
     letter-spacing: 2px;
 }
+
 .content form input{
     display: block;
     width: 400px;
@@ -55,14 +63,35 @@
     padding: 4px;
     margin-bottom: 1rem;
 }
+
+/* ✅ Full outlined message box with square corners */
+.content form textarea{
+    display: block;
+    width: 400px;                  /* align with desktop input width */
+    max-width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid black;      /* full border, not just bottom */
+    border-radius: 0;             /* square corners */
+    background: #fff;
+    color: #111;
+
+    padding: 8px 10px;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    resize: vertical;             /* allow vertical grow */
+    min-height: 6.5rem;
+}
+
 .image{
     display: flex;
     gap: 2rem;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
 }
+
+/* === Your original breakpoint (kept) === */
 @media (max-width:990px){
     .page{
         display: flex;
@@ -72,5 +101,78 @@
         gap: 1rem;
         grid-template-columns: 1fr;
     }
-    
 }
+
+/* === Mobile-first additions (new) ===
+   These ONLY apply on small screens and do not change desktop look.
+-------------------------------------------------------------- */
+
+/* Prevent horizontal scroll on tiny phones */
+@media (max-width: 640px) {
+  .page {
+    padding: 1.25rem 1rem;          /* relax big padding vertically & horizontally */
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;              /* avoid sideways scroll */
+  }
+
+  /* Let the form card breathe horizontally, but keep centered styling */
+  .form {
+    width: 100%;
+    max-width: 480px;                /* keeps desktop feel on mid-size phones */
+    padding: 0 0.25rem;              /* tiny inner cushion to avoid edge kisses */
+    box-sizing: border-box;
+  }
+
+  /* Keep your spacing but prevent vertical squeeze on small screens */
+  .content {
+    gap: 1rem;                       /* from 2rem → tighter but consistent */
+    line-height: 1.6;                /* a bit more relaxed for readability */
+    width: 100%;
+  }
+
+  /* Scale heading down slightly to avoid wrapping/squish */
+  .content h2 {
+    font-size: 1.75rem;              /* from 2.3rem on desktop */
+    letter-spacing: 2px;             /* maintain your look */
+  }
+
+  /* Inputs stretch to available width instead of a fixed 400px */
+  .content form {
+    width: 100%;
+    align-items: stretch;            /* make children (inputs) fill width */
+  }
+
+  /* Fluid fields on mobile (inputs + textarea) */
+  .content form input,
+  .content form select,
+  .content form textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 10px;
+    font-size: 16px;                 /* avoid iOS zoom on focus */
+    margin-bottom: 0.9rem;
+    box-sizing: border-box;
+  }
+
+  /* Keep the textarea a full box with square corners on mobile too */
+  .content form textarea {
+    border: 1px solid black;
+    border-radius: 0;                /* square corners */
+    min-height: 7rem;                /* a touch taller for thumbs */
+  }
+
+  /* Button retains your style, just a bit more touch-friendly */
+  .content form button {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Super-small phones like iPhone SE portrait (~320px) */
+@media (max-width: 360px) {
+  .content h2 { font-size: 1.6rem; }
+  .form { max-width: 100%; }
+  .content { gap: 0.85rem; }
+}
+
