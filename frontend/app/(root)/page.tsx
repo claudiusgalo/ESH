@@ -4,11 +4,13 @@ import Newsletter from '@/components/Newsletter';
 import PreviousListings from '@/components/PreviousListings';
 import YoutubeUploads from '@/components/YoutubeUploads';
 import Testimonial from '@/components/Testimonial';
+import Elcy from '@/components/Elcy';
 
 export default function Home() {
 	return (
 		<>
 			<Video />
+		    <Elcy />   	
 			<Featured />
 			<Newsletter />
 			<Video
