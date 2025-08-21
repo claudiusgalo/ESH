@@ -26,7 +26,6 @@ type TestimonialItem = {
 };
 
 const rawTestimonials: TestimonialItem[] = [
-
   {
     id: 1,
     name: 'Charles Carter',
@@ -43,43 +42,42 @@ const rawTestimonials: TestimonialItem[] = [
   {
     id: 2,
     name: 'maw187',
-    date: '2016-6-9',
+    date: '2016-06-09',
     avatar: '/avatar-18.svg',
     local_knowledge: '5/5',
     process_expertise: '5/5',
     responsiveness: '5/5',
     negotiation_skills: '5/5',
-    title: 'Bought a Single Family home in 2012 in Winchester,VA',
+    title: 'Bought a Single Family home in 2012 in Winchester, VA',
     body:
-      'Very attentive, knows the ins and outs of the business, answer all the questions promptly Will take her time to show you all the houses you want, very patient',
+      'Very attentive, knows the ins and outs of the business, answers all the questions promptly. Will take her time to show you all the houses you want, very patient.',
   },
   {
     id: 3,
     name: 'joelmita',
-    date: '2016-6-9',
+    date: '2016-06-09',
     avatar: '/avatar-18.svg',
     local_knowledge: '5/5',
     process_expertise: '5/5',
     responsiveness: '5/5',
     negotiation_skills: '5/5',
-    title: 'Bought a Single Family home in 2015 in Winchester,VA',
+    title: 'Bought a Single Family home in 2015 in Winchester, VA',
     body:
-      'I’ve known Elcy for many years and have sought her assistance on a number of occasions. Her attention to details makes her an exceptional agent in her market. Always providing an excellent service, I would definitely refer her to anyone looking into selling, buying or renting.',
+      'I’ve known Elcy for many years and have sought her assistance on a number of occasions. Her attention to detail makes her an exceptional agent in her market. Always providing an excellent service—highly recommend her to anyone selling, buying, or renting.',
   },
   {
     id: 4,
     name: 'direxpo',
-    date: '2016-6-9',
+    date: '2016-06-09',
     avatar: '/avatar-18.svg',
     local_knowledge: '5/5',
     process_expertise: '5/5',
     responsiveness: '5/5',
     negotiation_skills: '5/5',
-    title: 'Bought a Single Family home in 2013 in Winchester,VA',
+    title: 'Bought a Single Family home in 2013 in Winchester, VA',
     body:
-      'Elcy has helped us for a few years with all our real estate needs. We selected her because she impressed us with her knowledge of the local market and of the real estate business. But in addition to this knowledge, she has shown us a very high degree of professionalism. She keeps her appointments, she goes the extra mile, and she has a personal interest in us as a family. I highly recommend Elcy!',
+      'Elcy has helped us for a few years with all our real estate needs. She impressed us with her local market knowledge and professionalism. She keeps her appointments, goes the extra mile, and genuinely cares. Highly recommend!',
   },
-
 ];
 
 const toTime = (d: string) => new Date(d).getTime() || 0;
@@ -96,7 +94,7 @@ const roundHalf = (n: number) => Math.round(n * 2) / 2;
 // ⭐ Center-capable Stars
 const Stars: React.FC<{ value: number; size?: number; className?: string }> = ({
   value,
-  size = 18,
+  size = 16, // slightly smaller for phones; still crisp on Pro Max
   className,
 }) => {
   const v = roundHalf(Math.max(0, Math.min(5, value)));
@@ -115,7 +113,7 @@ const Stars: React.FC<{ value: number; size?: number; className?: string }> = ({
 
 const Testimonial: React.FC = () => {
   const testimonials = useMemo(
-    () => [...rawTestimonials].sort((a, b) => toTime(b.date) - toTime(a.date)),
+    () => [...rawTestimonials].sort((a, b) => toTime(b.date) - toTime(a.date)), // newest → oldest
     []
   );
   const [current, setCurrent] = useState(0);
@@ -126,19 +124,24 @@ const Testimonial: React.FC = () => {
       .reduce((a, b) => a + b, 0) / 4;
 
   useEffect(() => {
-    const id = setInterval(() => setCurrent((i) => (i + 1) % testimonials.length), 5000);
+    const id = setInterval(() => setCurrent((i) => (i + 1) % testimonials.length), 6000);
     return () => clearInterval(id);
   }, [testimonials.length]);
 
   return (
-    <div className={`${styles.page} text-white`}>
-      <h2 className={`${reader.className} text-[20px] text-white`}>Client Testimonials</h2>
+    <div className={`${styles.page} text-white px-4 sm:px-6`}>
+      <h2 className={`${reader.className} text-[18px] sm:text-[20px] text-white mb-3 sm:mb-4`}>
+        Client Testimonials
+      </h2>
 
-      <section className={styles.slider_container} aria-roledescription="carousel">
+      <section
+        className={`${styles.slider_container} relative overflow-hidden`}
+        aria-roledescription="carousel"
+      >
         {testimonials.map((t, idx) => (
           <article
             key={t.id}
-            className={`${styles.slide} text-white`}
+            className={`${styles.slide} text-white text-center`}
             aria-hidden={idx !== current}
             style={{
               transform: `translateX(${100 * (idx - current)}%)`,
@@ -146,38 +149,40 @@ const Testimonial: React.FC = () => {
               visibility: idx === current ? 'visible' : 'hidden',
             }}
           >
-            {/* Avatar on top → Name → Stars (all centered) */}
-            <div className="flex flex-col items-center text-center gap-2 mb-4">
+            {/* Avatar → Name → Overall stars */}
+            <div className="flex flex-col items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Image
                 src={t.avatar}
                 alt={`${t.name} avatar`}
                 width={56}
                 height={56}
-                className="rounded-full object-cover w-14 h-14 mx-auto self-center block"
+                className="rounded-full object-cover w-12 h-12 sm:w-14 sm:h-14 mx-auto block"
               />
-              <span className="font-medium text-white leading-tight">{t.name}</span>
+              <span className="font-medium leading-tight text-sm sm:text-base">{t.name}</span>
               <Stars value={overall(t)} />
             </div>
 
             {/* Title & Body */}
-            <h3 className="text-lg font-semibold text-white">{t.title}</h3>
-            <p className="text-white">&ldquo;{t.body}&rdquo;</p>
+            <h3 className="text-base sm:text-lg font-semibold leading-snug">{t.title}</h3>
+            <p className="text-sm sm:text-base leading-relaxed max-w-prose mx-auto mt-2">
+              &ldquo;{t.body}&rdquo;
+            </p>
 
             {/* Category ratings */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 text-white">
-              <div className="flex items-center justify-between">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mt-4">
+              <div className="flex items-center justify-between text-xs sm:text-sm">
                 <span>Local Knowledge</span>
                 <Stars value={toScore(t.local_knowledge)} />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between text-xs sm:text-sm">
                 <span>Process Expertise</span>
                 <Stars value={toScore(t.process_expertise)} />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between text-xs sm:text-sm">
                 <span>Responsiveness</span>
                 <Stars value={toScore(t.responsiveness)} />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between text-xs sm:text-sm">
                 <span>Negotiation Skills</span>
                 <Stars value={toScore(t.negotiation_skills)} />
               </div>
@@ -185,21 +190,22 @@ const Testimonial: React.FC = () => {
           </article>
         ))}
 
+        {/* Mobile-friendly nav buttons */}
         <button
           type="button"
-          className={`${styles.prev} text-white`}
+          className={`${styles.prev} text-white h-10 w-10 sm:h-12 sm:w-12 rounded-full grid place-items-center active:scale-95 touch-manipulation`}
           onClick={() => setCurrent((i) => (i === 0 ? testimonials.length - 1 : i - 1))}
           aria-label="Previous testimonial"
         >
-          <FiChevronLeft />
+          <FiChevronLeft className="h-6 w-6 sm:h-7 sm:w-7" />
         </button>
         <button
           type="button"
-          className={`${styles.next} text-white`}
+          className={`${styles.next} text-white h-10 w-10 sm:h-12 sm:w-12 rounded-full grid place-items-center active:scale-95 touch-manipulation`}
           onClick={() => setCurrent((i) => (i + 1) % testimonials.length)}
           aria-label="Next testimonial"
         >
-          <FiChevronRight />
+          <FiChevronRight className="h-6 w-6 sm:h-7 sm:w-7" />
         </button>
       </section>
     </div>
@@ -207,4 +213,3 @@ const Testimonial: React.FC = () => {
 };
 
 export default Testimonial;
-
