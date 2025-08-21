@@ -13,20 +13,23 @@ export default function Catalog() {
 
   const handleClick = (coords) => {
     if (mapRef.current && Array.isArray(coords) && coords.length === 2) {
-      mapRef.current.setView(coords, 15); // zoom in when selecting a listing
+      mapRef.current.setView(coords, 15);
     }
   };
 
   return (
     <div className={styles.page}>
       <div className={styles.container}>
+        {/* Map column */}
         <div className={styles.map}>
           <MyAwesomeMap
             data={active_listings}
             mapRef={mapRef}
+            height="100%"
           />
         </div>
 
+        {/* Listings column */}
         <div className={styles.data}>
           <div className={styles.info}>
             <h1 className="uppercase">Find your future home</h1>
@@ -41,8 +44,8 @@ export default function Catalog() {
                 number={d.number}
                 desc={d.desc}
                 time={d.time}
-                code={d.coordinates} // <-- pass coords to your card
-                handleClick={handleClick} // <-- will setView on click
+                code={d.coordinates}
+                handleClick={handleClick}
               />
             ))}
           </div>
