@@ -8,7 +8,7 @@ import SingleProduct from '@/components/SingleProduct';
 
 const MyAwesomeMap = dynamic(() => import('@/components/Map'), { ssr: false });
 
-export default function Catalog() {
+export default function HomeSearch() {
   const mapRef = useRef(null);
 
   const handleClick = (coords) => {
