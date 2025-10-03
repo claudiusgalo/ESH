@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   title: 'Elcy & Co. Realty',
   description:
     'Unlocking doors to your dreams. Invest in your tomorrow, your next chapter begins with us.',
+  icons: {
+    icon: '/Asset1.svg', // make sure logo.svg is in the /public folder
+    shortcut: '/Asset1.svg',
+    apple: '/Asset1.png', // optional fallback for iOS devices
+  },
 };
 
 export default function RootLayout({
