@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import styles from './header.module.css';
 import { useAppContext } from '@/context/context';
-import { Menu, MenuButton, Button } from '@chakra-ui/react';
+import { Menu, MenuButton, Button, Flex } from '@chakra-ui/react';
 import BurgerMenu from './BurgerMenu';
 import { Visibility } from '@/interfaces/context';
 
@@ -43,10 +43,21 @@ export default function Header() {
     <>
       <div className={styles.navbar}>
         <div
-          className="flex items-center justify-between lg:justify-center p-[0.75rem] uppercase bg-[rgba(24, 63, 38, 1)] text-white"
+          className="flex items-center justify-between lg:justify-left p-[0.75rem] uppercase bg-[rgba(24, 63, 38, 1)] text-white"
           style={{ background: color }}
         >
           <div className={styles.title}>
+            <Link href="/">
+              <div className="flex flex-col">
+                <img
+                  className="ml-0 mb-2"
+                  src="/Asset1.svg"
+                  height={80}
+                  width={80}
+                />
+                <span className="text-yellow-200 text-xs text">Elcy & Co</span>
+              </div>
+            </Link>
             <Link href="/">
               <h3 className="font-bold text-[0.75rem] md:text-[1.5rem]">
                 ELCY PEREIRA
@@ -91,14 +102,24 @@ export default function Header() {
             visibility: displayBar,
           }}
         >
+          <Link href="/contact-me">
+            <p style={{ visibility: displayBar }}>
+              Contact<span className={styles.dot}>.</span>
+            </p>
+          </Link>
+          <Link href="/buyers">
+            <p style={{ visibility: displayBar }}>
+              Buyers<span className={styles.dot}>.</span>
+            </p>
+          </Link>
+          <Link href="/sellers">
+            <p style={{ visibility: displayBar }}>
+              Sellers<span className={styles.dot}>.</span>
+            </p>
+          </Link>
           <Link href="/home-search">
             <p style={{ visibility: displayBar }}>
               Home Search<span className={styles.dot}>.</span>
-            </p>
-          </Link>
-          <Link href="/team">
-            <p style={{ visibility: displayBar }}>
-              Team <span className={styles.dot}>.</span>
             </p>
           </Link>
         </div>

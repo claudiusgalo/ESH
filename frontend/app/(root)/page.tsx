@@ -7,27 +7,27 @@ import Testimonial from '@/components/Testimonial';
 import Elcy from '@/components/Elcy';
 
 export default function Home() {
-	return (
-		<>
-			<Video />
-		    <Elcy />   	
-			<Featured />
-			<Newsletter />
-			<Video
-				title_l1={'Lets Close On Your Dream Home'}
-				title_l2={''}
-				title_l3={''}
-				pl1={'Discover our listings'}
-				pl2={''}
-				isLoading={true}
-				text='discover'
-				video={
-					'https://videos.pexels.com/video-files/5576689/5576689-uhd_2560_1440_30fps.mp4'
-				}
-				urlLink='https://www.zillow.com/profile/Elcy-Pereira/'
-			/>
-			<Testimonial />
-			<YoutubeUploads />
-		</>
-	);
+  return (
+    <>
+      <Video />
+      <Elcy />
+      <Featured />
+      <Newsletter />
+      <Video
+        title_l1={'Lets Close On Your Dream Home'}
+        title_l2={''}
+        title_l3={''}
+        pl1={'Discover our listings'}
+        pl2={''}
+        isLoading={true}
+        text="discover"
+        video={
+          'https://videos.pexels.com/video-files/5576689/5576689-uhd_2560_1440_30fps.mp4'
+        }
+        urlLink="https://www.zillow.com/profile/Elcy-Pereira/"
+      />
+      <Testimonial />
+      <YoutubeUploads />
+    </>
+  );
 }

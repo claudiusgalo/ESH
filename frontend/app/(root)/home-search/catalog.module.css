@@ -5,7 +5,7 @@
   background-color: #183f26;
   color: #fff;
   min-height: 100dvh;
-  padding-top: var(--header-offset);
+  padding-top: 9rem;
 }
 
 /* Desktop shell: map + list columns */

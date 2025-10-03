@@ -2,21 +2,24 @@ import React from 'react';
 
 import Image from 'next/image';
 
-export default function Team() {
+export default function Buyers() {
   return (
-    <div className="mt-10 flex flex-col flex-1 min-h-screen justify-center items-center">
-      <div className="flex flex-col justify-center items-center gap-5">
-        <Image
-          src="/apple-icon.jpg"
-          alt="Elcy"
-          width={100}
-          height={100}
-          className="object-cover w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full"
+    <div className="mt-0 flex flex-col flex-1 min-h-screen justify-center items-center">
+      <div className="mt-00 flex flex-col justify-center items-center gap-5">
+        <img
+          className="object-cover object-left"
+          src="/Buyer_2.gif"
+          alt=""
         />
         <div className="flex flex-col p-5">
           <h1 className="font-bold text-center text-[16px] md:text-[20px]">
-            Elcy Pereira, Broker & Realtor
+            Questions & Answers
           </h1>
+          <div className="flex grid-cols-3 con place-content-center">
+            <div>Hello</div>
+            <div>Howdy</div>
+            <div>Rowdy</div>
+          </div>
           <p className="text-[12px] md:text-[16px]">
             Elcy is a highly experienced Realtor and licensed Broker who has
             been serving clients since 2002. Fluent in English, Portuguese, and

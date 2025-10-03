@@ -1,92 +1,129 @@
 .elcy_container {
-    background-color: #14532d; /* green */
-    color: #ffffff;
-  }
-  
+  background-color: #14532d; /* green */
+  color: #ffffff;
+}
+
+.elcy_inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
   .elcy_inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.1rem 1rem;
+    padding: 1.6rem 1.25rem;
   }
-  
-  @media (min-width: 640px) { .elcy_inner { padding: 1.6rem 1.25rem; } }
-  @media (min-width: 1024px) { .elcy_inner { padding: 2.25rem 1.75rem; } }
-  
-  /* Two columns: image (auto) on left, text to the right */
+}
+@media (min-width: 1024px) {
+  .elcy_inner {
+    padding: 2.25rem 1.75rem;
+  }
+}
+
+/* Two columns: image (auto) on left, text to the right */
+.elcy_grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem; /* tighter on phones */
+  align-items: stretch; /* let columns size naturally */
+}
+@media (min-width: 768px) {
   .elcy_grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 0.75rem;      /* tighter on phones */
-    align-items: stretch;     /* let columns size naturally */
+    column-gap: 1.25rem;
   }
-  @media (min-width: 768px) { .elcy_grid { column-gap: 1.25rem; } }
-  @media (min-width: 1024px) { .elcy_grid { column-gap: 1.5rem; } }
-  
-  /* Small image with thin square border, vertically centered next to text */
-  .image_wrap {
-    position: relative;
-    width: clamp(95px, 21vw, 120px);
-    min-width: 56px;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-  
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 0;
-  
-    align-self: center; /* <-- centers image vertically relative to the text column */
+}
+@media (min-width: 1024px) {
+  .elcy_grid {
+    column-gap: 1.5rem;
   }
-  
-  .image { object-fit: cover; }
-  
-  /* Text column */
-  .bio { max-width: 70ch; }
-  
-  /* Smaller headings on mobile; still substantial on desktop */
+}
+
+/* Small image with thin square border, vertically centered next to text */
+.image_wrap {
+  position: relative;
+  width: clamp(95px, 21vw, 120px);
+  min-width: 56px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+
+  align-self: center; /* <-- centers image vertically relative to the text column */
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Text column */
+.bio {
+  max-width: 70ch;
+}
+
+/* Smaller headings on mobile; still substantial on desktop */
+.name {
+  font-size: clamp(1.125rem, 3.2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+/* Contact row — compact on mobile */
+.contact {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  font-size: clamp(0.85rem, 2vw, 0.98rem);
+  line-height: 1.45;
+}
+
+.link {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+.dot {
+  opacity: 0.6;
+}
+
+/* Synopsis: no clamping; just smaller type & tighter leading on phones */
+.synopsis {
+  margin-top: 0.7rem;
+  font-size: clamp(0.8rem, 1.4vw, 0.95rem);
+  line-height: 1.55; /* a bit tighter for small screens */
+  max-width: 65ch;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+@media (min-width: 768px) {
   .name {
-    font-size: clamp(1.125rem, 3.2vw, 2rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: 0.01em;
-    margin: 0;
+    font-size: clamp(1.4rem, 2.8vw, 2.25rem);
   }
-  
-  /* Contact row — compact on mobile */
   .contact {
-    margin-top: 0.35rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.6rem;
-    font-size: clamp(0.85rem, 2vw, 0.98rem);
-    line-height: 1.45;
+    font-size: clamp(0.9rem, 1.7vw, 1.05rem);
+    line-height: 1.5;
   }
-  
-  .link {
-    color: #e2e8f0;
-    text-decoration: none;
-  }
-  .link:hover { text-decoration: underline; }
-  
-  .dot { opacity: 0.6; }
-  
-  /* Synopsis: no clamping; just smaller type & tighter leading on phones */
   .synopsis {
-    margin-top: 0.7rem;
-    font-size: clamp(0.8rem, 1.4vw, 0.95rem);
-    line-height: 1.55;        /* a bit tighter for small screens */
-    max-width: 65ch;
-    overflow-wrap: anywhere;
-    hyphens: auto;
+    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+    line-height: 1.65;
   }
-  
-  @media (min-width: 768px) {
-    .name { font-size: clamp(1.4rem, 2.8vw, 2.25rem); }
-    .contact { font-size: clamp(0.9rem, 1.7vw, 1.05rem); line-height: 1.5; }
-    .synopsis { font-size: clamp(0.9rem, 1.6vw, 1.05rem); line-height: 1.65; }
+}
+
+@media (min-width: 1200px) {
+  .name {
+    font-size: 2.25rem;
   }
-  
-  @media (min-width: 1200px) {
-    .name { font-size: 2.25rem; }
-    .contact { font-size: 1.0625rem; }
-    .synopsis { font-size: 1.0625rem; }
+  .contact {
+    font-size: 1.0625rem;
   }
-  
+  .synopsis {
+    font-size: 1.0625rem;
+  }
+}

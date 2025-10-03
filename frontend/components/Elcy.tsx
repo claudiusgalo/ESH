@@ -43,19 +43,34 @@ const Elcy = ({ profile = elcy_profile }: { profile?: Profile }) => {
 
             <div className={` ${newspaper.className} ${styles.contact}`}>
               {phone && (
-                <a href={`tel:${phone.replace(/\D/g, '')}`} className={styles.link}>
+                <a
+                  href={`tel:${phone.replace(/\D/g, '')}`}
+                  className={styles.link}
+                >
                   {phone}
                 </a>
               )}
-              {phone && email && <span className={styles.dot} aria-hidden>•</span>}
+              {phone && email && (
+                <span
+                  className={styles.dot}
+                  aria-hidden
+                >
+                  •
+                </span>
+              )}
               {email && (
-                <a href={`mailto:${email}`} className={styles.link}>
+                <a
+                  href={`mailto:${email}`}
+                  className={styles.link}
+                >
                   {email}
                 </a>
               )}
             </div>
 
-            <p className={`${newspaper.className} ${styles.synopsis}`}>{synopsis}</p>
+            <p className={`${newspaper.className} ${styles.synopsis}`}>
+              {synopsis}
+            </p>
           </div>
         </div>
       </div>
@@ -64,4 +79,3 @@ const Elcy = ({ profile = elcy_profile }: { profile?: Profile }) => {
 };
 
 export default Elcy;
-

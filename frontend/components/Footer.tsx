@@ -38,7 +38,7 @@ const Footer = () => {
             </h2>
             <p className={`${reader.className} text-white`}>
               Subscribe to the Gazette and be the first to receive the latest
-              news on listings
+              news on listings and market updates.
             </p>
           </div>
           <form
@@ -62,6 +62,13 @@ const Footer = () => {
         </div>
 
         <div className={styles.company_desc}>
+          <img
+            className="mr-5"
+            src="/Asset1.svg"
+            width={70}
+            height={70}
+          />
+
           <h1 className="text-white font-semibold">Elcy & Co. Realty, LLC.</h1>
           <a
             className="text-white"
@@ -77,12 +84,6 @@ const Footer = () => {
           </div>
           <p>PO BOX 1674, Winchester, VA 22604</p>
           <p>1525 Milwood Pike, Winchester, VA 22602</p>
-          <img
-            className="mr-5"
-            src="/Asset1.svg"
-            width={50}
-            height={50}
-          />
           <div className="mr-1 flex flex-row">
             <Image
               className="mr-1"
