@@ -1,5 +1,5 @@
 export const elcy_profile = {
-  image: '/elcy.jpg',
+  image: '/apple-icon.jpg',
   name: 'Elcy Pereira',
   phone: '(540) 323-0675',
   email: 'elcy@elcysellshomes.com',
