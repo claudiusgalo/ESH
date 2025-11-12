@@ -16,22 +16,12 @@ export default function Buyers() {
             Questions & Answers
           </h1>
           <div className="flex grid-cols-3 con place-content-center">
-            <div>Hello</div>
-            <div>Howdy</div>
-            <div>Rowdy</div>
+            <div className="flex">Discovery</div>
+            <div className="flex">Market Education</div>
+            <div className="flex">Active Search</div>
+            <div className="flex">Offer</div>
+            <div className="flex">Close</div>
           </div>
-          <p className="text-[12px] md:text-[16px]">
-            Elcy is a highly experienced Realtor and licensed Broker who has
-            been serving clients since 2002. Fluent in English, Portuguese, and
-            Spanish, she brings a unique international perspective and a deep
-            understanding of diverse cultures. Known for her patience and
-            personalized approach, Elcy has guided first-time buyers and
-            seasoned investors alike through successful transactions across
-            Northern Virginia and the Shenandoah Valley. Her global clientele
-            and track record of delivering results are a testament to her
-            dedication, expertise, and passion for helping people achieve their
-            real estate goals. Reach out today for a free consultation.
-          </p>
         </div>
       </div>
     </div>
