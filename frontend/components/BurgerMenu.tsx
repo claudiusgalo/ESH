@@ -7,12 +7,14 @@ import Home from '@/app/(root)/page';
 const BurgerMenu = () => {
   const burgerLinks = {
     'Home Search': '/home-search',
-    'Contact Us': '/contact-me',
+    Contact: '/contact-me',
+    Buyers: '/buyers',
+    Sellers: '/Sellers',
   };
 
   return (
     <MenuList
-      bg="green.700"
+      bg="green.900"
       color="white"
       shadow="2xl"
       border="none"
@@ -27,7 +29,7 @@ const BurgerMenu = () => {
           key={label}
           as={NextLink}
           href={href}
-          bg="green.800"
+          bg="green.900"
           borderRadius="lg"
           _hover={{ bg: 'green.600', color: 'black' }}
         >
